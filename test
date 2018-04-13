@@ -4,6 +4,7 @@ set -e
 
 run_test() {
     test="$1" ; shift
+    echo "running test '$test'"
     case "$test" in
         test1) return 0 ;;
         test2) return 0 ;;
