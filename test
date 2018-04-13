@@ -41,7 +41,7 @@ list_failing() {
 
 command="$1" ; shift
 case "$command" in
-    test)         run_test         "$@" ;;
+    test)         run_test_profile "$@" ;;
     test-profile) run_test_profile "$@" ;;
     list-failing) list_failing     "$@" ;;
 esac
