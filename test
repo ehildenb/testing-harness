@@ -15,7 +15,7 @@ run_test() {
         test2) return 0 ;;
         test3) return 0 ;;
         test4) return 0 ;;
-        test5) return 0 ;;
+        test5) return 1 ;;
         test6) return 0 ;;
         *)     return -1 ;;
     esac
