@@ -6,6 +6,7 @@ test_logs=".build/logs"
 [[ -d "$test_logs" ]] || mkdir -p "$test_logs"
 test_passing="$test_logs/passing"
 test_failing="$test_logs/failing"
+touch "$test_passing" "$test_failing"
 
 run_test() {
     local test="$1" ; shift
@@ -16,6 +17,7 @@ run_test() {
         test4) return 0 ;;
         test5) return 2 ;;
         test6) return 0 ;;
+        *)     return -1 ;;
     esac
 }
 
@@ -33,4 +35,13 @@ run_test_profile() {
     exit "$exit_status"
 }
 
-run_test_profile "$@"
+list_failing() {
+    cat "$test_failing" | tr --squeeze-repeats '[:space:]' | sort -R | head -n1
+}
+
+command="$1" ; shift
+case "$command" in
+    test)         run_test         "$@" ;;
+    test-profile) run_test_profile "$@" ;;
+    list-failing) list_failing     "$@" ;;
+esac
