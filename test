@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -e
+
+run_test() {
+    test="$1" ; shift
+    case "$test" in
+        test1) return 0 ;;
+        test2) return 0 ;;
+        test3) return 0 ;;
+        test4) return 0 ;;
+        test5) return 0 ;;
+        test6) return 0 ;;
+    esac
+}
+
+run_test_profile() {
+    local test_logs=".build/logs"
+    [[ -d "$test_logs" ]] || mkdir -p "$test_logs"
+    local test_passing="$test_logs/passing"
+    local test_failing="$test_logs/failing"
+    local exit_status='0'
+    run_test "$@" || exit_status="$?"
+    if [[ "$exit_status" == '0' ]]; then
+        echo "$@" >> "$test_passing"
+    else
+        echo "$@" >> "$test_failing"
+    fi
+    exit "$exit_status"
+}
+
+run_test_profile "$@"
