@@ -22,6 +22,7 @@ run_test_profile() {
     local exit_status='0'
     echo "running test '$test'" >&2
     run_test "$@" || exit_status="$?"
+    echo "finished test '$test'" >&2
     if [[ "$exit_status" == '0' ]]; then
         echo "$@" >> "$test_passing"
     else
