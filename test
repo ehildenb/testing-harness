@@ -2,6 +2,11 @@
 
 set -e
 
+test_logs=".build/logs"
+[[ -d "$test_logs" ]] || mkdir -p "$test_logs"
+test_passing="$test_logs/passing"
+test_failing="$test_logs/failing"
+
 run_test() {
     local test="$1" ; shift
     case "$test" in
@@ -16,10 +21,6 @@ run_test() {
 
 run_test_profile() {
     local test="$1" ; shift
-    local test_logs=".build/logs"
-    [[ -d "$test_logs" ]] || mkdir -p "$test_logs"
-    local test_passing="$test_logs/passing"
-    local test_failing="$test_logs/failing"
     local exit_status='0'
     echo "running test '$test'" >&2
     run_test "$test" "$@" || exit_status="$?"
