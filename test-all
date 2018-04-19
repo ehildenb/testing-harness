@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 for branch in failing-branch passing-branch out-of-date-branch; do
-    echo git checkout "$branch"
-    echo git cs --no-edit
-    echo git pushf
-    sleep 2
+    git checkout "$branch"
+    git cs --no-edit
 done
