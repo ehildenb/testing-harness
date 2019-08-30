@@ -9,3 +9,7 @@ Current Projects
 Currently, I'm working on getting Buildbot to automatically run `git bisect` on a given branch when a test fails.
 Ideally, it would only run the failing test and not all the passing tests as well.
 This mirrors the fact that my workflow usually leads me to do a manual `git bisect` locally after a test fails.
+
+### Notes about branch
+
+This branch is passing the tests.
