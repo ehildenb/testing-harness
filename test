@@ -13,9 +13,9 @@ run_test() {
     case "$test" in
         test1) return 0 ;;
         test2) return 0 ;;
-        test3) return 0 ;;
+        test3) return 1 ;;
         test4) return 0 ;;
-        test5) return 0 ;;
+        test5) return 1 ;;
         test6) return 0 ;;
         *)     return -1 ;;
     esac
@@ -24,9 +24,9 @@ run_test() {
 run_test_profile() {
     local test="$1" ; shift
     local exit_status='0'
-    echo "==  running test '$test'" >&2
+    echo "===  running test '$test'" >&2
     run_test "$test" "$@" || exit_status="$?"
-    echo "==  finished test '$test'" >&2
+    echo "===  finished test '$test'" >&2
     if [[ "$exit_status" == '0' ]]; then
         echo "$test" >> "$test_passing"
     else
